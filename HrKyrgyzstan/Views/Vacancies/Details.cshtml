@@ -1,0 +1,90 @@
+﻿@model HrKyrgyzstan.Entities.Vacancy
+
+@{
+    ViewData["Title"] = "Vacancy";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+    <div>
+        <h4 class=" text-white">Vacancy</h4>
+        <hr />
+        <dl class="row text-white">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.About)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.About)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MinSalary)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MinSalary) KGS
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Responsibilities)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Responsibilities)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.YourHope)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.YourHope)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Skills)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Skills)
+            </dd>
+            @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VacancyId)
+            </dt>
+            <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VacancyId)
+            </dd>*@
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Company)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Company.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Country.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.City.Name)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @if (User.IsInRole("Companion") || User.IsInRole("Administrator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        }
+        <a asp-action="Index">Back to List</a>
+    </div>
+</body>
+</html>

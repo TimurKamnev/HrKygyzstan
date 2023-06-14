@@ -1,0 +1,71 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<body class="page-no-footer">
+    <div class="account-login-pageReg luck">
+        <div class="blockreg">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="account-login-tile-reg">
+                <h2 class="text-white">Create a new account.</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger-1"></div>
+                <div class="form-floating input-box">
+                    <input asp-for="Input.FirstName" class="form-control fieldPriv" autocomplete="firstname"
+                        aria-required="true" />
+                    <label asp-for="Input.FirstName"></label>
+                    <span asp-validation-for="Input.FirstName" class="text-danger-1"></span>
+                </div>
+                <div class="form-floating input-box">
+                    <input asp-for="Input.LastName" class="form-control fieldPriv" autocomplete="lastname" aria-required="true" />
+                    <label asp-for="Input.LastName"></label>
+                    <span asp-validation-for="Input.LastName" class="text-danger-1"></span>
+                </div>
+                <div class="form-floating input-box">
+                    <input asp-for="Input.Email" class="form-control fieldPriv" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger-1"></span>
+                </div>
+                <div class="form-floating input-box">
+                    <input asp-for="Input.Password" class="form-control fieldPriv" autocomplete="new-password"
+                        aria-required="true" />
+                    <label asp-for="Input.Password"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger-1"></span>
+                </div>
+                <div class="form-floating input-box">
+                    <input asp-for="Input.ConfirmPassword" class="form-control fieldPriv" autocomplete="new-password"
+                        aria-required="true" />
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger-1"></span>
+                </div>
+                <button id="registerSubmit" type="submit"
+                    class="w-100 btn btn-lg btn-primary-1 text-white">Register</button>
+                <h5 class="text-white">
+                    Register with
+                </h5>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/home?original_referer=https%3A%2F%2Fwww.linkedin.com%2Ffeed%2F"><i
+                            class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.facebook.com/r.php?locale=en_US&display=page"><i
+                            class='bx bxl-facebook-circle'></i></a>
+                    <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://twitter.com/i/flow/signup"><i class='bx bxl-twitter'></i></a>
+                </div>
+                <hr class="text-dark">
+                <div class="tim">
+                    <p>
+                        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Already have an account?</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

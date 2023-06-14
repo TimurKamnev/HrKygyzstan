@@ -1,0 +1,71 @@
+﻿@model IEnumerable<HrKyrgyzstan.Entities.Company>
+
+@{
+    ViewData["Title"] = "Company";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    @if (User.IsInRole("Administrator"))
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
+    <div class="companyBox">
+        <div class="uncleDrew">
+            <h2>
+                Find in HrKyrgyzstan any Company of your desire
+            </h2>
+            <hr>
+        </div>
+
+        <div>
+            @foreach (var item in Model)
+            {
+                <div class="company-container">
+                    <div class="company-block">
+                        <div class="company-info">
+                            <h4>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </h4>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.AboutUs)
+                            </p>  
+                            <div class="vacancyH4">
+                                @Html.DisplayFor(modelItem => item.Country.Name),
+                                @Html.DisplayFor(modelItem => item.City.Name)
+                            </div>
+                            <div>
+                                @Html.DisplayFor(modelItem => item.FeedBack)
+                            </div>
+                            <div>
+                                <a style="text-decoration: none;" class="kvn" asp-action="Details"
+                                    asp-route-id="@item.Id">Details</a>
+                                <div class="company-actions">
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <a style="text-decoration: none;" class="kvn" asp-action="Edit"
+                                            asp-route-id="@item.Id">Edit</a>
+                                        <a style="text-decoration: none;" class="kvn" asp-action="Delete"
+                                            asp-route-id="@item.Id">Delete</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+</html>

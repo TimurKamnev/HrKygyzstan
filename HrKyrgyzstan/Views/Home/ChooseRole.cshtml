@@ -1,0 +1,28 @@
+﻿@using HrKyrgyzstan.Areas.Identity.Data;
+@using HrKyrgyzstan.Interfaces;
+@{
+    ViewData["Title"] = "Choose";
+}
+
+<!DOCTYPE html>
+<html>
+
+<body class="page-no-footer">
+    <div id="content">
+        <h1 class="text-white">Join as a companion or freelancer</h1>
+        <div class="btnChosePos">
+
+            <a class="btnChose" id="register" asp-area="Identity" asp-page="/Account/Register" value="@Constants.Roles.Companion">
+                I’m a companion,<br> hiring a people
+            </a>
+
+            <a class="btnChose" id="register" asp-area="Identity" asp-page="/Account/Register" value="@Constants.Roles.User)">
+                I’m a freelancer,<br>
+                looking
+                for work
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

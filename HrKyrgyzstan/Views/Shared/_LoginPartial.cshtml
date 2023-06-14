@@ -1,0 +1,74 @@
+﻿@using HrKyrgyzstan.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<CreatedUser> SignInManager
+@inject UserManager<CreatedUser> UserManager
+
+<ul class="navbar-nav-1">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg"
+            class="user-pic" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg">
+                    <h5 class="text-dark">@UserManager.GetUserName(User)</h5>
+                </div>
+                <hr>
+
+                <li class="nav-item">
+                    <a id="manage" class="nav-link sub-menu-link" asp-area="Identity"
+                        asp-page="/Account/Manage/Index" title="Manage">
+                        <p class="text-dark">Edit Profile</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark sub-menu-link" asp-area="" asp-controller="Home" asp-action="Privacy">
+                        <p class="text-dark">Help & Support</p>
+                    </a>
+                </li>
+
+                <li class="nav-item sub-menu-link">
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+                        asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">
+                            <p class="text-dark">Logout</p>
+                        </button>
+                    </form>
+                </li>
+
+            </div>
+        </div>
+
+        <script>
+            let subMenu = document.getElementById("subMenu");
+
+            function toggleMenu() {
+                subMenu.classList.toggle("open-menu");
+            }
+        </script>
+
+        @* <li class="nav-item">
+    <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index"
+    title="Manage">@UserManager.GetUserName(User)</a>
+    </li> *@
+        @* <li class="nav-item">
+    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+    asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+    <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
+    </form>
+    </li> *@
+    }
+    else
+    {
+        <li class=" brightnessBtn btnLogin-popup">
+            <a class="nav-link-1 text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Log In</a>
+        </li>
+        <li class="nav-item btnReg-popup">
+            <a class="nav-link-1 text-white" id="register" asp-controller="Home" asp-action="ChooseRole">Sign Up</a>
+        </li>
+    }
+</ul>

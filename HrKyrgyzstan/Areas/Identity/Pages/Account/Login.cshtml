@@ -1,0 +1,81 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<body class="page-no-footer">
+    <div class="row-content">
+        <div class="account-login-page luck">
+            <div class="blockreg">
+                <section>
+                    <form id="account" method="post" class="account-login-tile-log">
+                        <h2 class="text-white">Search for work</h2>
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger-1"></div>
+                        <div class="form-floating input-box">
+                            <input asp-for="Input.Email" class="form-control fieldPriv" autocomplete="username"
+                                aria-required="true" />
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <span asp-validation-for="Input.Email" class="text-danger-1"></span>
+                        </div>
+                        <div class="form-floating input-box">
+                            <input asp-for="Input.Password" class="form-control fieldPriv" autocomplete="current-password"
+                                aria-required="true" />
+                            <label asp-for="Input.Password" class="form-label "></label>
+                            <span asp-validation-for="Input.Password" class="text-danger-1"></span>
+                        </div>
+                        <div>
+                            <div class="checkbox text-white">
+                                <label asp-for="Input.RememberMe" class="form-label text-white">
+                                    <input class="form-check-input-1" asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="login-submit" type="submit"
+                                class="w-100 btn btn-lg btn-primary-1 text-white">Log-in</button>
+                            <h5 class="text-white">
+                                Continue with
+                            </h5>
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/signup"><i class='bx bxl-linkedin'></i></a>
+                                <a href="https://www.facebook.com/home.php"><i class='bx bxl-facebook-circle'></i></a>
+                                <a href="https://www.instagram.com/accounts/login/"><i class='bx bxl-instagram'></i></a>
+                                <a
+                                    href="https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoicnUifQ%3D%3D%22%7D"><i
+                                        class='bx bxl-twitter'></i></a>
+                            </div>
+                        </div>
+                        <hr class="text-dark">
+                        <div class="tim">
+                            <p>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a><br>
+                            </p>
+                            <p>
+                                <a asp-controller="Home" asp-action="ChooseRole">Register as a new user</a>
+                            </p>
+                        </div>
+                    </form>
+                </section>
+
+                <section>
+                    <form class="account-login-tile-log">
+                        <h2 class="text-white">Search Employee</h2>
+                        <hr />
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary-1 text-white">Search
+                            for Employee</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

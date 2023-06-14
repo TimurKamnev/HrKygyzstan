@@ -1,0 +1,112 @@
+﻿@model IEnumerable<HrKyrgyzstan.Entities.Vacancy>
+
+@{
+    ViewData["Title"] = "Vacancy";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    @if (User.IsInRole("Companion") || User.IsInRole("Administrator"))
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
+    <table class="vacancyBox">
+        <div class="uncleDrew text-white">
+            <h2>
+                Work in HrKyrgyzstan in SNG with full employment
+            </h2>
+            <hr>
+        </div>
+
+        <div class="containerSides">
+            <div class="bottom-left">
+                <label class="text-white" for="cars">Choose a vacancy:</label>
+                <select name="cars" id="cars">
+                    <optgroup label="Programming">
+                        <option value="volvo">Hr-manager</option>
+                        <option value="saab">Coder</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                        <option value="mercedes">C-Creator</option>
+                        <option value="audi">Cleaner</option>
+                    </optgroup>
+                </select>
+
+                <div class="form-container">
+                    <label class="text-white">What u like</label>
+                    <br>
+                    <div class="checkbox-group">
+                        <label class="text-white">
+                            <input class="form-check-input-1" type="checkbox" checked> Salesman
+                        </label>
+                        <label class="text-white">
+                            <input class="form-check-input-1" type="checkbox"> Doctor
+                        </label>
+                        <label class="text-white">
+                            <input class="form-check-input-1" type="checkbox"> Waiter
+                        </label>
+                        <label class="text-white">
+                            <input class="form-check-input-1" type="checkbox"> Electrician
+                        </label>
+                        <label class="text-white">
+                            <input class="form-check-input-1" type="checkbox"> Businessman
+                        </label>
+                    </div>
+                    <br>
+                </div>
+
+            </div>
+            <div class="bottom-right">
+                @foreach (var item in Model)
+                {
+                    <div class="vacancy-container">
+                        <div class="vacancy-block">
+                            <div class="company-info">
+                                <h4>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </h4>
+                                <h4>
+                                    @Html.DisplayFor(modelItem => item.MinSalary) KGS
+                                </h4>
+                                <div class="vacancyH4 ">
+                                    <a class="kvn" style="text-decoration: none;" href="https://localhost:7036/Companies/Details/8">
+                                        @Html.DisplayFor(modelItem => item.Company.Name)
+                                    </a>
+                                </div>
+                                <div>
+                                    @Html.DisplayFor(modelItem => item.Country.Name),
+                                    @Html.DisplayFor(modelItem => item.City.Name)
+                                </div>
+                                <div class="vacancyH4">
+                                    <a style="text-decoration: none;" class="kvn" asp-action="Details"
+                                        asp-route-id="@item.Id">Details</a>
+                                    <div class="vacancy-actions">
+                                        @if (User.IsInRole("Companion") || User.IsInRole("Administrator"))
+                                        {
+                                            <a style="text-decoration: none;" class="kvn" asp-action="Edit"
+                                                asp-route-id="@item.Id">Edit</a>
+                                            <a style="text-decoration: none;" class="kvn" asp-action="Delete"
+                                                asp-route-id="@item.Id">Delete</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </table>
+</body>
+
+</html>

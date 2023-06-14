@@ -1,0 +1,170 @@
+﻿@using HrKyrgyzstan.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<CreatedUser> SignInManager
+@inject UserManager<CreatedUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HrKyrgyzstan</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HrKyrgyzstan.styles.css" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="nike.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="modal fade" id="searchModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Search</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Search keyword">
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class='bx bxs-home logo'></i>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        @*@if (User.IsInRole("Administrator") || User.IsInRole("Companion") ||
+                        User.IsInRole("Freelancer"))
+                        {*@
+                        <li class="nav-item navigation">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home"
+                                asp-action="Privacy">Help</a>
+                        </li>
+                        <li class="nav-item navigation">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home"
+                                asp-action="Managment">Coworkers</a>
+                        </li>
+                        @*}*@
+
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Companion") ||
+                        User.IsInRole("Freelancer"))
+                        {
+                            <li class="nav-item navigation">
+                                <a class="nav-link text-white" id="manage" asp-area="" asp-controller="User"
+                                    asp-action="Index">Users</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="johnWick search-bar">
+            <button type="button" class="btnSearch" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class='bx bx-search-alt-2' autocomplete="on"></i>
+            </button>
+            <partial name="_LoginPartial" />
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footerhelp">
+        <div class="footer-nav--RzoDGjZx5zMrrftgyjCV">
+            <div class="bloko-gap_bottom">
+                <div class="footer-col">
+                    <h4> Company </h4>
+                    <ul>
+                        <li><a href="# ">About us</a></li>
+                        <li><a href="# ">Our services</a></li>
+                        <li><a href="# ">Privacy policy</a></li>
+                        <li><a href="# ">Affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4> Get help </h4>
+                    <ul>
+                        <li><a href="# ">FAQ</a></li>
+                        <li><a href="# ">Shipping</a></li>
+                        <li><a href="# ">Returns</a></li>
+                        <li><a href="# ">Order status</a></li>
+                        <li><a href="# ">Payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4> Online </h4>
+                    <ul>
+                        <li><a href="# ">Watch</a></li>
+                        <li><a href="# ">Bag</a></li>
+                        <li><a href="# ">Programms</a></li>
+                        <li><a href="# ">Companies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4> Develops </h4>
+                    <ul>
+                        <li><a href="# ">Other Companies</a></li>
+                        <li><a href="# ">SumBags</a></li>
+                        <li><a href="# ">Procrastination</a></li>
+                        <li><a href="# ">Future</a></li>
+                        <li><a href="# ">It-Projects</a></li>
+                        <li><a href="# ">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-icons-1">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a
+                            href="https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoicnUifQ%3D%3D%22%7D"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/accounts/login/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/signup"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <hr class="text-white">
+                <p class="footerHelpLink">&copy; 2023 - HrKyrgyzstan - <a class="footerHelpA" asp-area=""
+                        asp-controller="Home" asp-action="Privacy">Help </a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="jumpForFot"></div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
